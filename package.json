@@ -1,0 +1,9 @@
+{
+    "name": "boardgame",
+    "description": "A basic board game",
+    "version": "0.0.1",
+    "dependencies": {
+        "socket.io": "*",
+        "connect": "*"
+    }
+}
