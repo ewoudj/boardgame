@@ -2,13 +2,19 @@
 <html>
     <head>
         <title>The board game</title>
-        <script src="../script/app.js"></script>
-        <style>
-            html, body { margin:0; padding:0; overflow:hidden; width: 100%; height: 100%; background-color: #9ec7f3 }
-            svg { position:fixed; top:0; bottom:0; left:0; right:0 }
-        </style>
+        <script src="script/jquery-2.0.3.js"></script><!-- jQuery temporarily in script as repository does not contain a pre-build version -->
+        <script src="lib/socket.io-client/dist/socket.io.js"></script>
+        <script src="lib/underscore/underscore.js"></script>
+        <script src="lib/backbone/backbone.js"></script>
+        <script src="omni.js"></script>
+        <script data-main="script/app" src="lib/requirejs/require.js"></script>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div class="chatcontainer">
+            <form id="send" onsubmit="return false;"><input placeholder="Type a message..." type="text" /></form>
+            <div class="chat"></div>
+        </div>
         <svg
            xmlns:dc="http://purl.org/dc/elements/1.1/"
            xmlns:cc="http://creativecommons.org/ns#"

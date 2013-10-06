@@ -1,4 +1,43 @@
-window.addEventListener('load', function(){
+requirejs.config({
+    baseUrl: 'script',
+    paths: {
+        lib: '../lib'
+    }
+});
+
+Omni.ready(function() {
+    var ChatView = Backbone.View.extend({
+        events: {
+            "submit #send": "sendMessage"
+        },
+        initialize: function() {
+            this.collection.each(this.addMessage, this); // Add any messages that already exist in this collection
+            this.listenTo(this.collection, "add", this.addMessage); // Listen for new messages
+        },
+        addMessage: function(model) {
+            console.log(model);
+            this.$el.find(".chat").append($("<p>").text(model.get("message")));
+            this.$el.find(".chat").animate({ scrollTop: this.$el.find(".chat")[0].scrollHeight }, "slow")
+        },
+        sendMessage: function(event) {
+            var $input = this.$el.find("input");
+            if ($input.val()) {
+                this.collection.add({message: $input.val()});
+                $input.val('');
+            }
+
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    new ChatView({el: $("body"), collection: Omni.Collections.messages});
+});
+
+
+require([], function() {
+
     var svg = document.getElementById('svg2');
     var svgNS = svg.getAttribute('xmlns');
     var svgWidth = 216;
@@ -125,4 +164,5 @@ window.addEventListener('load', function(){
         requestAnimationFrame(animloop);
         // render();
     })();
+
 });
