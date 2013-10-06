@@ -21,7 +21,7 @@ svg {
     top: 10px;
     left: 10px;
     width: 300px;
-    height: 400px;
+    bottom: 10px;
     z-index: 10000;
     overflow: hidden;
     background-color: rgba(255,255,255,0.3);
