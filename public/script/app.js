@@ -33,6 +33,12 @@ Omni.ready(function() {
     });
 
     new ChatView({el: $("body"), collection: Omni.Collections.messages});
+
+    Omni.Collections.maps.each(function(m){
+        Omni.trigger('requestMapSvgEvent', {name: m.attributes.name}, function(mapSvg){
+           alert(arguments  );
+        });
+    })
 });
 
 
